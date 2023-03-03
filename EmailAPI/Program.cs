@@ -5,7 +5,21 @@ var services = builder.Services;
 
 services.AddControllers();
 services.AddEndpointsApiExplorer();
-services.AddSwaggerGen();
+services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Chayanne's Contact API",
+        Description = "Chayanne's contact information API",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        {
+            Name = "Chayanne",
+            Url = new Uri("https://www.chayannerodriguez.com/"),
+        }
+    }); 
+});
+
 services.AddCors(options =>
 {
     options.AddDefaultPolicy(

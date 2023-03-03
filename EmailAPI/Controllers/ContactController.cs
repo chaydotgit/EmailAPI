@@ -1,15 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 namespace EmailAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 public class ContactController : ControllerBase
 {
+    private readonly IConfiguration _config;
+    public ContactController(IConfiguration config)
+    {
+        _config= config;
+    }
+
     [HttpGet("email")] // api/contact/email
     public ActionResult<EmailResponse> GetEmailAddress()
     {
-        return new EmailResponse() { Email = "chayanne624@gmail.com" };
+        return new EmailResponse() { Email = _config["Email"] };
     }
 }
 
