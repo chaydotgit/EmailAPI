@@ -2,6 +2,7 @@
 namespace EmailAPI.Controllers;
 
 [Route("api/[controller]")]
+[Produces("application/json")]
 [ApiController]
 public class ContactController : ControllerBase
 {
@@ -11,10 +12,26 @@ public class ContactController : ControllerBase
         _config= config;
     }
 
+    /// <summary>
+    /// Returns Chayanne's email address and date the email address was last updated.
+    /// </summary>
+    /// <returns>An email address and last updated date</returns>
+    /// <remarks>
+    /// Sample request:
+    /// 
+    ///     GET /api/contact/email
+    ///     {
+    ///         "Email": "example@gmail.com",
+    ///         "LastUpdatedDate": "date"
+    ///     }
+    ///     
+    /// </remarks>
+    /// <response code="200">Returns an email address and updated date</response>
     [HttpGet("email")] // api/contact/email
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<EmailResponse> GetEmailAddress()
     {
-        return new EmailResponse() { Email = _config["Email"] };
+        return new EmailResponse() { Email = _config["Email"]! };
     }
 }
 

@@ -1,3 +1,5 @@
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Dependency injection setup
@@ -17,7 +19,10 @@ services.AddSwaggerGen(c =>
             Name = "Chayanne",
             Url = new Uri("https://www.chayannerodriguez.com/"),
         }
-    }); 
+    });
+
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
 services.AddCors(options =>
