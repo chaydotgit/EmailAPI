@@ -20,7 +20,6 @@ services.AddSwaggerGen(c =>
             Url = new Uri("https://www.chayannerodriguez.com/"),
         }
     });
-
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
